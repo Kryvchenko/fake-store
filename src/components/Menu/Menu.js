@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export const Menu = () => {
     return (
         <>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit">LogiN</Button>
 
             <Button color="inherit">
                 <Link to="/">Products</Link>
