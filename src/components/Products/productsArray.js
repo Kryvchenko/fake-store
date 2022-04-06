@@ -14,7 +14,7 @@ export const productsArray = [
         description: 'This is iPhone 12 Pro',
         capacity: 256,
         type: 'phone',
-        price: 1800,
+        price: 1850,
         image: '/images/iphone-gold.jpeg',
     },
     {
