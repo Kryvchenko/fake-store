@@ -5,10 +5,7 @@ import { Main } from 'containers/Main/Main'
 import { Footer } from 'containers/Footer/Footer'
 
 export const App = () => {
-    const [productsInCart, setProductsInCart] = useState({
-        1: 2,
-        2: 2,
-    })
+    const [productsInCart, setProductsInCart] = useState({})
 
     const addProductToCart = (id, count) => {
         setProductsInCart((prevState) => ({
@@ -21,7 +18,10 @@ export const App = () => {
         <>
             <CssBaseline />
             <Header productsInCart={productsInCart} />
-            <Main addProductToCart={addProductToCart} />
+            <Main
+                addProductToCart={addProductToCart}
+                productsInCart={productsInCart}
+            />
 
             <Footer />
         </>
