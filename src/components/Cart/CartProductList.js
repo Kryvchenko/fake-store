@@ -5,18 +5,21 @@ import {
     getProductsObject,
     productsArray,
 } from 'components/Products/productsArray'
+import { CartProductListItem } from './CartProductsListItem'
 
 export const CartProductList = ({
     productsInCart,
     productsObject = getProductsObject(productsArray),
+    CartItem = CartProductListItem,
 }) => {
     return (
         <div>
             {keys(productsInCart).map((productId) => (
-                <div key={productId}>
-                    {productsObject[productId].name} :
-                    {productsInCart[productId]}
-                </div>
+                <CartItem
+                    key={productId}
+                    product={productsObject[productId]}
+                    productCount={productsInCart[productId]}
+                />
             ))}
         </div>
     )
