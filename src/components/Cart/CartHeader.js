@@ -35,7 +35,6 @@ export const CartHeader = ({ productsInCart }) => {
                 }, 0)}
                 $
             </div>
-            <Link to="/cart">Show cart</Link>
         </div>
     )
 }
