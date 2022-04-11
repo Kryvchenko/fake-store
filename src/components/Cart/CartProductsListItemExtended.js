@@ -14,7 +14,11 @@ const useStyles = makeStyles({
         padding: 15,
     },
 })
-export const CartProductListItemExtended = ({ product, productCount }) => {
+export const CartProductListItemExtended = ({
+    product,
+    productCount,
+    removeProductFromCart,
+}) => {
     const classes = useStyles()
     return (
         <Grid item xs={12} sm={6}>
@@ -27,7 +31,9 @@ export const CartProductListItemExtended = ({ product, productCount }) => {
                     <div>Price for one items: {product.price}</div>
                     <div>Count: {productCount}</div>
                     <Button variant="outlined">
-                        <Delete />
+                        <Delete
+                            onClick={() => removeProductFromCart(product.id)}
+                        />
                     </Button>
                 </CardContent>
             </Card>
