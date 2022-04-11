@@ -13,7 +13,7 @@ export const CartProductList = ({
     CartItem = CartProductListItem,
 }) => {
     return (
-        <div>
+        <>
             {keys(productsInCart).map((productId) => (
                 <CartItem
                     key={productId}
@@ -21,6 +21,6 @@ export const CartProductList = ({
                     productCount={productsInCart[productId]}
                 />
             ))}
-        </div>
+        </>
     )
 }
