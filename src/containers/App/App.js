@@ -3,9 +3,13 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { Header } from 'containers/Header/Header'
 import { Main } from 'containers/Main/Main'
 import { Footer } from 'containers/Footer/Footer'
+import _, { omit } from 'lodash'
 
 export const App = () => {
-    const [productsInCart, setProductsInCart] = useState({})
+    const [productsInCart, setProductsInCart] = useState({
+        1: 2,
+        2: 2,
+    })
 
     const addProductToCart = (id, count) => {
         setProductsInCart((prevState) => ({
@@ -14,10 +18,20 @@ export const App = () => {
         }))
     }
 
+    const removeProductFromCart = (productId) => {
+        setProductsInCart((prevState) => {
+            const prevProductsInCart = { ...prevState }
+
+            delete prevProductsInCart[productId]
+            return prevProductsInCart
+        })
+    }
+
     return (
         <>
             <CssBaseline />
             <Header productsInCart={productsInCart} />
+            <button onClick={() => removeProductFromCart(1)}>Delete</button>
             <Main
                 addProductToCart={addProductToCart}
                 productsInCart={productsInCart}
