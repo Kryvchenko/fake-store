@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, TextField } from '@mui/material'
 
-export const Quantity = ({ onDecrement, onIncrement, count }) => {
+export const Quantity = ({ count, onDecrement, onIncrement }) => {
     return (
         <div className="product-quantity">
             <Button
