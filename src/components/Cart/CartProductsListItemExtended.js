@@ -3,6 +3,9 @@ import { Button, Card, CardContent, Grid } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { Quantity } from 'components/Quantity/Quantity'
 import React from 'react'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { connect } from 'react-redux'
 
 const useStyles = makeStyles({
     media: {
@@ -15,11 +18,14 @@ const useStyles = makeStyles({
         padding: 15,
     },
 })
-export const CartProductListItemExtended = ({
+const CartProductListItemExtended = ({
     product,
     productCount,
     removeProductFromCart,
     changeProductQuantity,
+    isLiked = false,
+    addLike,
+    removeLike,
 }) => {
     const classes = useStyles()
 
@@ -33,6 +39,15 @@ export const CartProductListItemExtended = ({
                     <div>{product.name}</div>
                     <div>Price for one items: {product.price}</div>
                     <div>Count: {productCount}</div>
+                    <Button
+                        onClick={() =>
+                            isLiked
+                                ? removeLike(product.id)
+                                : addLike(product.id)
+                        }
+                    >
+                        {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                    </Button>
                     <Quantity
                         count={productCount}
                         minCount={0}
@@ -59,3 +74,24 @@ export const CartProductListItemExtended = ({
         </Grid>
     )
 }
+
+const mapStateToProps = (state, { product }) => ({
+    isLiked: state.productsLikeState[product.id],
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    addLike: (id) =>
+        dispatch({
+            type: 'LIKE',
+            id,
+        }),
+    removeLike: (id) =>
+        dispatch({
+            type: 'DISLIKE',
+            id,
+        }),
+})
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(CartProductListItemExtended)
