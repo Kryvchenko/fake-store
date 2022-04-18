@@ -17,6 +17,8 @@ const ProductsListItem = ({
     addProductToCart,
     id,
     isLiked = false,
+    addLike,
+    removeLike,
 }) => {
     const [count, setCount] = useState(1)
 
@@ -34,7 +36,9 @@ const ProductsListItem = ({
                     <div className="product-img">
                         <img src={image} alt="" />
                     </div>
-                    <Button>
+                    <Button
+                        onClick={() => (isLiked ? removeLike(id) : addLike(id))}
+                    >
                         {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </Button>
                     <h4>{name}</h4>
@@ -77,4 +81,17 @@ ProductsListItem.defaultProps = {
 
 const mapStateToProps = (state, { id }) => ({ isLiked: state[id] })
 
-export default connect(mapStateToProps)(ProductsListItem)
+const mapDispatchToProps = (dispatch) => ({
+    addLike: (id) =>
+        dispatch({
+            type: 'LIKE',
+            id,
+        }),
+    removeLike: (id) =>
+        dispatch({
+            type: 'DISLIKE',
+            id,
+        }),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsListItem)
