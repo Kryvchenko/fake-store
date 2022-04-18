@@ -5,8 +5,9 @@ import './ProductsListItem.css'
 import PropTypes from 'prop-types'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { connect } from 'react-redux'
 
-export const ProductsListItem = ({
+const ProductsListItem = ({
     name,
     description,
     capacity,
@@ -15,6 +16,7 @@ export const ProductsListItem = ({
     image,
     addProductToCart,
     id,
+    isLiked = false,
 }) => {
     const [count, setCount] = useState(1)
 
@@ -33,7 +35,7 @@ export const ProductsListItem = ({
                         <img src={image} alt="" />
                     </div>
                     <Button>
-                        {false ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                        {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                     </Button>
                     <h4>{name}</h4>
                     <p>{description}</p>
@@ -72,3 +74,7 @@ ProductsListItem.defaultProps = {
     description: 'No description...',
     image: 'images/no-image.jpeg',
 }
+
+const mapStateToProps = (state, { id }) => ({ isLiked: state[id] })
+
+export default connect(mapStateToProps)(ProductsListItem)
