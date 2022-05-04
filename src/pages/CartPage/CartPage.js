@@ -5,11 +5,7 @@ import CartProductListItemExtended from 'components/Cart/CartProductsListItemExt
 import { Grid } from '@mui/material'
 import { connect } from 'react-redux'
 
-const CartPage = ({
-    productsInCart,
-    removeProductFromCart,
-    changeProductQuantity,
-}) => {
+const CartPage = ({ productsInCart }) => {
     return (
         <>
             <h1>Cart</h1>
@@ -17,8 +13,6 @@ const CartPage = ({
                 <CartProductList
                     productsInCart={productsInCart}
                     CartItem={CartProductListItemExtended}
-                    removeProductFromCart={removeProductFromCart}
-                    changeProductQuantity={changeProductQuantity}
                 />
             </Grid>
             <CartTotal productsInCart={productsInCart} />

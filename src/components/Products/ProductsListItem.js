@@ -79,7 +79,9 @@ ProductsListItem.defaultProps = {
     image: 'images/no-image.jpeg',
 }
 
-const mapStateToProps = (state, { id }) => ({ isLiked: state[id] })
+const mapStateToProps = (state, { id }) => ({
+    isLiked: state.productsLikeState[id],
+})
 
 const mapDispatchToProps = (dispatch) => ({
     addLike: (id) =>
