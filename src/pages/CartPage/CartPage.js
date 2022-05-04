@@ -1,11 +1,15 @@
 import React from 'react'
-import { CartTotal } from 'components/Cart/CartTotal'
-import { CartProductList } from 'components/Cart/CartProductList'
+import CartTotal from 'components/Cart/CartTotal'
+import CartProductList from 'components/Cart/CartProductList'
 import CartProductListItemExtended from 'components/Cart/CartProductsListItemExtended'
 import { Grid } from '@mui/material'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 
 const CartPage = ({ productsInCart }) => {
+    // const ProductsInCart = useSelector((state) => ({
+    //     productsInCart: state.productsInCart,
+    // }))
+
     return (
         <>
             <h1>Cart</h1>

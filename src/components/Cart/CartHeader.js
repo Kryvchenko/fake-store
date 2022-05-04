@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { CartTotal } from './CartTotal'
-import { CartProductList } from './CartProductList'
+import CartTotal from './CartTotal'
+import CartProductList from './CartProductList'
 import { connect } from 'react-redux'
 
 const CartHeader = ({ productsInCart }) => {
