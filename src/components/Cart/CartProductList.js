@@ -3,14 +3,12 @@ import { keys } from 'lodash'
 
 import { getProductsObject } from 'components/Products/productsArray'
 import { CartProductListItem } from './CartProductsListItem'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-const CartProductList = ({
-    productsArray,
-    productsInCart,
-    productsObject = getProductsObject(productsArray),
-    CartItem = CartProductListItem,
-}) => {
+export const CartProductList = ({ CartItem = CartProductListItem }) => {
+    const productsArray = useSelector((state) => state.products)
+    const productsObject = getProductsObject(productsArray)
+    const productsInCart = useSelector((state) => state.productsInCart)
     if (productsArray.lenght === 0) {
         return null
     } else {
@@ -27,9 +25,3 @@ const CartProductList = ({
         )
     }
 }
-
-const mapStateToProps = (state) => ({
-    productsArray: state.products,
-})
-
-export default connect(mapStateToProps)(CartProductList)

@@ -1,20 +1,13 @@
 import React from 'react'
 
-import CartTotal from './CartTotal'
-import CartProductList from './CartProductList'
-import { connect } from 'react-redux'
+import { CartTotal } from './CartTotal'
+import { CartProductList } from './CartProductList'
 
-const CartHeader = ({ productsInCart }) => {
+export const CartHeader = () => {
     return (
         <div>
-            <CartProductList productsInCart={productsInCart} />
-            <CartTotal productsInCart={productsInCart} />
+            <CartProductList />
+            <CartTotal />
         </div>
     )
 }
-
-const mapStateToProps = (state) => ({
-    productsInCart: state.productsInCart,
-})
-
-export default connect(mapStateToProps)(CartHeader)
