@@ -14,7 +14,7 @@ export const ProductsListItem = ({
     type,
     price,
     image,
-    addProductToCart,
+    // addProductToCart,
     id,
     // addLike,
     // removeLike,
@@ -46,7 +46,7 @@ export const ProductsListItem = ({
             <Card>
                 <CardContent>
                     <div className="product-img">
-                        <img src={image} alt="" />
+                        <img src={image} alt="image" />
                     </div>
                     <Button
                         onClick={() => (isLiked ? removeLike(id) : addLike(id))}
