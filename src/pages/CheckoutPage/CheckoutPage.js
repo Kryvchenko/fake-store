@@ -20,7 +20,7 @@ class CheckoutPage extends Component {
     }
 
     sendForm = (e) => {
-        e.preventDefault()
+        e.preventDefaul()
         axios
             .post(
                 'https://my-json-server.typicode.com/kznkv-skillup/server/orders',
@@ -34,7 +34,7 @@ class CheckoutPage extends Component {
                 this.setState({
                     name,
                     address,
-                    isOrderSent: true,
+                    isOrderSend: true,
                 })
             )
     }
@@ -53,7 +53,7 @@ class CheckoutPage extends Component {
                 <div>
                     <input
                         type="text"
-                        placeholder="Your address"
+                        placeholder="Your adress"
                         value={this.state.address}
                         onChange={this.handleAddress}
                     />
@@ -76,7 +76,7 @@ class CheckoutPage extends Component {
         console.log(this.state)
         return (
             <>
-                <h1>checkout</h1>
+                <h1>Checkout</h1>
                 {this.state.isOrderSend !== true
                     ? this.renderForm()
                     : this.renderMessage()}

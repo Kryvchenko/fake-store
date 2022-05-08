@@ -5,7 +5,7 @@ import { Quantity } from 'components/Quantity/Quantity'
 import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const useStyles = makeStyles({
     media: {
@@ -18,16 +18,32 @@ const useStyles = makeStyles({
         padding: 15,
     },
 })
-const CartProductListItemExtended = ({
+export const CartProductListItemExtended = ({
     product,
     productCount,
-    removeProductFromCart,
-    changeProductQuantity,
-    isLiked = false,
-    addLike,
-    removeLike,
+    // removeProductFromCart,
+    // changeProductQuantity,
+    // // isLiked = false,
+    // addLike,
+    // removeLike,
 }) => {
     const classes = useStyles()
+
+    const isLiked = useSelector((state) => state.productsLikeState[product.id])
+
+    const dispatch = useDispatch()
+    function addLike(id) {
+        dispatch({ type: 'LIKE', id })
+    }
+    function removeLike(id) {
+        dispatch({ type: 'DISLIKE', id })
+    }
+    function removeProductFromCart(id) {
+        dispatch({ type: 'REMOVE_PRODUCT_FROM_CART', id })
+    }
+    function changeProductQuantity(id, count) {
+        dispatch({ type: 'CHANGE_PRODUCT_QUANTITY', id, count })
+    }
 
     return (
         <Grid item xs={12} sm={6}>
@@ -75,34 +91,34 @@ const CartProductListItemExtended = ({
     )
 }
 
-const mapStateToProps = (state, { product }) => ({
-    isLiked: state.productsLikeState[product.id],
-})
+// const mapStateToProps = (state, { product }) => ({
+//     isLiked: state.productsLikeState[product.id],
+// })
 
-const mapDispatchToProps = (dispatch) => ({
-    addLike: (id) =>
-        dispatch({
-            type: 'LIKE',
-            id,
-        }),
-    removeLike: (id) =>
-        dispatch({
-            type: 'DISLIKE',
-            id,
-        }),
-    removeProductFromCart: (id) =>
-        dispatch({
-            type: 'REMOVE_PRODUCT_FROM_CART',
-            id,
-        }),
-    changeProductQuantity: (id, count) =>
-        dispatch({
-            type: 'CHANGE_PRODUCT_QUANTITY',
-            id,
-            count,
-        }),
-})
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(CartProductListItemExtended)
+// const mapDispatchToProps = (dispatch) => ({
+//     addLike: (id) =>
+//         dispatch({
+//             type: 'LIKE',
+//             id,
+//         }),
+//     removeLike: (id) =>
+//         dispatch({
+//             type: 'DISLIKE',
+//             id,
+//         }),
+//     removeProductFromCart: (id) =>
+//         dispatch({
+//             type: 'REMOVE_PRODUCT_FROM_CART',
+//             id,
+//         }),
+//     changeProductQuantity: (id, count) =>
+//         dispatch({
+//             type: 'CHANGE_PRODUCT_QUANTITY',
+//             id,
+//             count,
+//         }),
+// })
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(CartProductListItemExtended)
