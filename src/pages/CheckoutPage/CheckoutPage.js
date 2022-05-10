@@ -20,7 +20,7 @@ class CheckoutPage extends Component {
     }
 
     sendForm = (e) => {
-        e.preventDefaul()
+        e.preventDefault()
         axios
             .post(
                 'https://my-json-server.typicode.com/kznkv-skillup/server/orders',
