@@ -1,61 +1,54 @@
 import axios from 'axios'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-class CheckoutPage extends Component {
-    state = {
-        name: '',
-        address: '',
-        isOrderSend: false,
+const CheckoutPage = (props) => {
+    const [name, setName] = useState('')
+    const [address, setAddress] = useState('')
+    const [isOrderSend, setisOrderSend] = useState(false)
+
+    const handleName = (e) => {
+        setName(e.target.value)
     }
 
-    handleName = (e) => {
-        this.setState({
-            name: e.target.value,
-        })
-    }
-    handleAddress = (e) => {
-        this.setState({
-            address: e.target.value,
-        })
+    const handleAddress = (e) => {
+        setAddress(e.target.value)
     }
 
-    sendForm = (e) => {
+    const sendForm = (e) => {
         e.preventDefault()
         axios
             .post(
                 'https://my-json-server.typicode.com/kznkv-skillup/server/orders',
                 {
-                    name: this.state.name,
-                    address: this.state.address,
+                    name: name,
+                    address: address,
                 }
             )
             .then((res) => res.data)
-            .then(({ name, address }) =>
-                this.setState({
-                    name,
-                    address,
-                    isOrderSend: true,
-                })
+            .then(
+                ({ name, address }) => setName(name),
+                setAddress(address),
+                setisOrderSend(true)
             )
     }
 
-    renderForm = () => {
+    const renderForm = () => {
         return (
-            <form onSubmit={this.sendForm}>
+            <form onSubmit={sendForm}>
                 <div>
                     <input
                         type="text"
                         placeholder="Your name"
-                        value={this.state.name}
-                        onChange={this.handleName}
+                        value={name}
+                        onChange={handleName}
                     />
                 </div>
                 <div>
                     <input
                         type="text"
                         placeholder="Your adress"
-                        value={this.state.address}
-                        onChange={this.handleAddress}
+                        value={address}
+                        onChange={handleAddress}
                     />
                 </div>
                 <button type="submit">Send</button>
@@ -63,26 +56,21 @@ class CheckoutPage extends Component {
         )
     }
 
-    renderMessage = () => {
+    const renderMessage = () => {
         return (
             <div>
-                Dear, {this.state.name}, thanks for your order!{' '}
-                <p>Adress: {this.state.address}</p>
+                Dear, {name}, thanks for your order! <p>Adress: {address}</p>
             </div>
         )
     }
 
-    render() {
-        console.log(this.state)
-        return (
-            <>
-                <h1>Checkout</h1>
-                {this.state.isOrderSend !== true
-                    ? this.renderForm()
-                    : this.renderMessage()}
-            </>
-        )
-    }
+    console.log(name, address, isOrderSend)
+    return (
+        <>
+            <h1>Checkout</h1>
+            {isOrderSend !== true ? renderForm() : renderMessage()}
+        </>
+    )
 }
 
 export default CheckoutPage
