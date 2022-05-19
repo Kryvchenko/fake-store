@@ -6,6 +6,7 @@ import { CartPage } from 'pages/CartPage/CartPage'
 import { PaymentPage } from 'pages/PaymentPage/PaymentPage'
 import { ShippingPage } from 'pages/ShippingPage/ShippingPage'
 import CheckoutPage from 'pages/CheckoutPage/CheckoutPage'
+import { LikedPage } from 'pages/LikedPage/LikedPage'
 
 export const Main = () => {
     return (
@@ -18,6 +19,7 @@ export const Main = () => {
                     <Route path="payment" element={<PaymentPage />} />
                     <Route path="shipping" element={<ShippingPage />} />
                     <Route path="checkout" element={<CheckoutPage />} />
+                    <Route path="likedpage" element={<LikedPage />} />
                 </Routes>
             </Container>
         </>

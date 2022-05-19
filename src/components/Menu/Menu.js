@@ -35,6 +35,11 @@ export const Menu = () => {
                     Cart
                 </NavLink>
             </Button>
+            <Button color="inherit">
+                <NavLink className={setNavLinkClass} to="/likedpage">
+                    Wish list
+                </NavLink>
+            </Button>
         </>
     )
 }

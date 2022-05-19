@@ -31,6 +31,9 @@ export const ProductsListItem = ({
     function addProductToCart(id, count) {
         dispatch({ type: 'ADD_PRODUCT_TO_CART', id, count })
     }
+    // function addLikedProductToCart(id, count) {
+    //     dispatch({ type: 'ADD_LIKED_PRODUCT_TO_PAGE', id, count })
+    // }
 
     const [count, setCount] = useState(1)
 
@@ -45,7 +48,10 @@ export const ProductsListItem = ({
         <>
             <Card>
                 <CardContent>
-                    <div className="product-img">
+                    <div
+                        className="product-img"
+                        // onClick={() => addLikedProductToCart(id, count)}
+                    >
                         <img src={image} alt="image" />
                     </div>
                     <Button
