@@ -52,7 +52,7 @@ export const ProductsListItem = ({
                         className="product-img"
                         // onClick={() => addLikedProductToCart(id, count)}
                     >
-                        <img src={image} alt="image" />
+                        <img src={image} alt="" />
                     </div>
                     <Button
                         onClick={() => (isLiked ? removeLike(id) : addLike(id))}
