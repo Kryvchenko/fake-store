@@ -49,7 +49,7 @@ export const CartProductListItemExtended = ({
         <Grid item xs={12} sm={6}>
             <Card className={classes.cardWrap}>
                 <div>
-                    <img src={product.image} className={classes.media} />
+                    <img src={product.image} className={classes.media} alt="" />
                 </div>
                 <CardContent>
                     <div>{product.name}</div>
